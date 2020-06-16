@@ -1,3 +1,4 @@
+[![Build Status](https://dev.azure.com/ivanarantes/Space%20Game%20Pipeline/_apis/build/status/IvanArantes.mslearn-tailspin-spacegame-web?branchName=master)](https://dev.azure.com/ivanarantes/Space%20Game%20Pipeline/_build/latest?definitionId=3&branchName=master)
 
 # Contributing
 
