@@ -8,14 +8,13 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
-  wwwRootDir: 'Tailspin.SpaceGame.Web/wwwroot'
+  wwwrootDir: 'Tailspin.SpaceGame.Web/wwwroot'
   dotnetSdkVersion: '3.1.300'
 
 steps:
 - task: UseDotNet@2
   displayName: 'Use .NET Core SDK $(dotnetSdkVersion)'
   inputs:
-    packageType: sdk
     version: '$(dotnetSdkVersion)'
 
 - task: Npm@1
@@ -23,7 +22,7 @@ steps:
   inputs:
     verbose: false
 
-- script: './node_modules/.bin/node-sass $(wwwRootDir) --output $(wwwRootDir)'
+- script: './node_modules/.bin/node-sass $(wwwrootDir) --output $(wwwrootDir)'
   displayName: 'Compile Sass assets'
 
 - task: gulp@1
@@ -46,6 +45,15 @@ steps:
 - template: templates/build.yml
   parameters:
     buildConfiguration: 'Release'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Run units tests - $(buildConfiguration)'
+  inputs:
+    command: 'test'
+    arguments: '--no-build --configuration $(buildConfiguration)'
+    publishTestResults: true
+    projects: '**/*.Tests.csproj'
+
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'
