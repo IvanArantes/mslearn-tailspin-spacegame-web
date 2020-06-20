@@ -72,8 +72,7 @@ steps:
   displayName: 'Publish code coverage report'
   inputs:
     codeCoverageTool: 'cobertura'
-    summaryFileLocation: '$(Build.SourcesDirectory)/**/coverage.cobertura.xml'jects: '**/*.Tests.csproj'
-
+    summaryFileLocation: '$(Build.SourcesDirectory)/**/coverage.cobertura.xml'
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'
